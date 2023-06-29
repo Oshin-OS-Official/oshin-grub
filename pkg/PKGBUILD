@@ -1,53 +1,22 @@
-# This is an example PKGBUILD file. Use this as a start to creating your own,
-# and remove these comments. For more information, see 'man PKGBUILD'.
-# NOTE: Please fill out the license field for your package! If it is unknown,
-# then please put 'unknown'.
-
-# Maintainer: Your Name <youremail@domain.com>
-pkgname=oshin-grub
-pkgver=0.0.1
+pkgname=oshin-grub-theme
+pkgver=1.0
 pkgrel=1
-epoch=
-pkgdesc="GRUB Theme for Oshin"
-arch=(x86_64)
-url="https://github.com/Oshin-OS/oshin-grub"
-license=('GPL 3.0')
-groups=()
-depends=()
-makedepends=()
-checkdepends=()
-optdepends=()
-provides=()
-conflicts=()
-replaces=()
-backup=()
-options=()
-install=
-changelog=
-source=("$pkgname.tar.gz")
-noextract=()
-md5sums=('SKIP')
-validpgpkeys=()
+pkgdesc="Oshin Grub Theme"
+arch=('any')
+url="https://github.com/Oshin-OS-Official/oshin-grub"
+license=('MIT')
+depends=('grub')
 
-# prepare() {
-# 	cd "$pkgname-$pkgver"
-# 	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
-# }
-
-# build() {
-# 	cd "$pkgname-$pkgver"
-# 	./configure --prefix=/usr
-# 	make
-# }
-
-# check() {
-# 	cd "$pkgname-$pkgver"
-# 	make -k check
-# }
+source=("https://github.com/Oshin-OS-Official/oshin-grub/archive/main.tar.gz")
+sha256sums=('SKIP')
 
 package() {
-	# cd "$pkgname-$pkgver"
-	# make DESTDIR="$pkgdir/" install
-    mkdir -p "$pkgdir"/usr/share/grub/themes
-    cp -r oshin-grub "$pkgdir"/usr/share/grub/themes/
+    # Extract the theme
+    tar -xf "${srcdir}/main.tar.gz" -C "${pkgdir}/usr/share/grub/themes/"
+
+    # Rename the extracted folder to 'oshin'
+    mv "${pkgdir}/usr/share/grub/themes/oshin-grub-main" "${pkgdir}/usr/share/grub/themes/oshin"
+
+    # Set permissions
+    chmod -R 755 "${pkgdir}/usr/share/grub/themes/oshin"
 }
