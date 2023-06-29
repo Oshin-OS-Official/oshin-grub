@@ -12,11 +12,12 @@ sha256sums=('SKIP')
 
 package() {
     # Extract the theme
-    tar -xf "${srcdir}/main.tar.gz" -C "${pkgdir}/usr/share/grub/themes/"
+    tar -xf "${srcdir}/main.tar.gz" -C "${pkgdir}"
 
     # Rename the extracted folder to 'oshin'
-    mv "${pkgdir}/usr/share/grub/themes/oshin-grub-main" "${pkgdir}/usr/share/grub/themes/oshin"
+    echo "${pkgdir}"
+    mv "${pkgdir}/oshin-grub-main/oshin" "/usr/share/grub/themes/oshin"
 
     # Set permissions
-    chmod -R 755 "${pkgdir}/usr/share/grub/themes/oshin"
+    chmod -R 755 "/usr/share/grub/themes/oshin"
 }
